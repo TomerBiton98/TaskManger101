@@ -1,632 +1,310 @@
-body, html {
-    height: 100%; /* Ensure body and html have a height of 100% */
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: url('images/plants.jpeg') center/cover no-repeat;  /* More interesting pastel brown gradient */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Ensure body covers the entire viewport */
-}
-
-.container img{
-    width: 100px; /* Adjust the width as needed */
-    margin-bottom: 0%;
-    padding-bottom: 0%;
-    margin-left: 50px;
-}
-
-.container {
-    width: 95%;
-    height: 90%;
-    padding: 20px;
-    background: rgba(98, 98, 98, 0.4); /* Semi-transparent white background */
-    border-radius: 10px;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, ); /* Box shadow for glassmorphism effect */
-    backdrop-filter: blur(64px); /* Glassmorphism effect */
-}
-
-h1 {
-    text-align: center;
-    color: wheat; /* Dark text color */
-    margin: 0%;
-    padding: 0%;
-}
-
-.calander{
-    width: 14%;
-    height: 25%;
-    background:rgb(255, 242, 219);
-    display: flex;
-    align-items: center;
-    border-radius: 25px;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5); 
-    justify-content: center;
-    text-align: center;
-    position: absolute;
-    left: 1%;
-    top: 12%;
-    font-size: 2vw;
-}
-
-.day, .date{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 30px;
-    line-height: 0%;
-    color: #b88566;
-    font-size: 2vw;
-}
-
-.date{
-    width: 42%;
-    background: #ff6961 ;
-    color: wheat;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    line-height: 0%;
-    left: 1%;
-    font-size: 2.5vw;
-}
-.day{
-    width: 58%;
-    font-size: 2.5vw;
-}
-#date{
-    font-size: 60px;
-    font-size: 2.5vw;
-}
-.clock{
-    width: 14%;
-    height: 10%;
-    background:    wheat;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.2); 
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    justify-content: center;
-    text-align: center;
-    position: absolute;
-    left: 1%;
-    top: 37%;
-    color: #b88566;
-}
-.clock span {
-    font-size: 2vw; /* Use viewport width for font size adjustment */
-    width: 2vw;
-    display: inline-block;
-    text-align: center;
-    position: relative;
-}
-
-
-.clock span::after {
-    font-size: 1vw; /* Use viewport width for font size adjustment */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    line-height: 55%;
- }
- 
-#hrs::after{
-    Content: 'HRS';
-}
-#min::after{
-    Content: 'MINS';
-}
-
-
-.card {
-    width: 14%;
-    height: 22%;
-    background:  wheat;
-    border-radius: 10px;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.2); 
-    margin-top: 15px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center; /* Center horizontally */
-    text-align: center;
-    position: absolute;
-    left: 1%;
-    top: 48%;
-    color: #b88566;;
-}
-
-.weather {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center horizontally */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Weekly & Daily Task Manager</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
     
-}
-
-.weather-icon {
-    width: 4vw; /* Initial width */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 20%; /* Adjust margin-right for smaller screens */
-    padding: 0%;
-}
-
-.weather h1 {
-    font-size: 2vw; /* Use viewport width for font size adjustment */
-    font-weight: 400;
-    margin: 0%;
-    padding: 0%;
-    color: #b88566;
-}
-
-.weather h2 {
-    font-size: 1vw; /* Use viewport width for font size adjustment */
-    font-weight: 400;
-    padding: 0%;
-    margin: 0%;
-}
-@media screen and (max-width: 800px) {
-    .calander {
-        width: 15vw; /* Adjust width for smaller screens */
-        height: 20vw; /* Adjust height for smaller screens */
-    }
-
-    .day, .date {
-        font-size: 3vw; /* Adjust font size for smaller screens */
-    }
-
-    .date {
-        width: 7vw; /* Adjust width for smaller screens */
-    }
-
-
-}
-@media screen and (max-width: 768px) {
-    .weather h1 {
-        font-size: 2.5vw; /* Adjust font size for smaller screens */
-    }
-
-    .weather h2 {
-        font-size: 1.5vw; /* Adjust font size for smaller screens */
-    }
-    .clock span {
-        font-size: 2.5vw; /* Adjust font size for smaller screens */
-        width: 2.5vw;
-    }
-
-    .clock span::after {
-        font-size: 1.5vw; /* Adjust font size for smaller screens */
-    }
-        .weather-icon {
-            width: 2.5vw; /* Initial width */
-            height: auto; /* Maintain aspect ratio */
-            margin-right: 25%; /* Adjust margin-right for smaller screens */
-            padding: 0%;
-        }
-    .calander {
-        width: 15vw; /* Adjust width for smaller screens */
-        height: 20vw; /* Adjust height for smaller screens */
-    }
-
-    .day, .date {
-        font-size: 3vw; /* Adjust font size for smaller screens */
-    }
-
-    .date {
-        width: 7vw; /* Adjust width for smaller screens */
-    }
-    .input-box{
-        width: 2vw; /* Adjust width for smaller screens */
-        height: 2vw; 
-    }
-    
-}
-
-
-/* Media query for even smaller screens */
-@media screen and (max-width: 480px) {
-    .weather h1 {
-        font-size: 1.5vw; /* Adjust font size for even smaller screens */
-    }
-
-    .weather h2 {
-        font-size: 0.5vw; /* Adjust font size for even smaller screens */
-    }
-    .clock span {
-        font-size: 1.5vw; /* Adjust font size for even smaller screens */
-        width: 1.5vw;
-    }
-
-    .clock span::after {
-        font-size: 1vw; /* Adjust font size for even smaller screens */
-    }
-    .weather-icon {
-        width: 2vw; /* Initial width */
-        height: auto; /* Maintain aspect ratio */
-        margin-right: 25%; /* Adjust margin-right for smaller screens */
-        padding: 0%;
-    }
-    .calander {
-        width: 1.5vw; /* Adjust width for even smaller screens */
-        height: 1.5vw; /* Adjust height for even smaller screens */
-    }
-
-    .day, .date {
-        font-size: 1.5vw; /* Adjust font size for even smaller screens */
-    }
-
-    .date {
-        width: 1.5vw; /* Adjust width for even smaller screens */
-    }
-    .input-box{
-        width: 1vw; /* Adjust width for even smaller screens */
-        height: 1vw;
-    }
-}
-
-
-.week {
-    width: 98%;
-    height: 25%;
-    background:   wheat;;
-    border-radius: 10px;
-    box-shadow: 0 16px 64px rgba(106, 102, 102, 0.2); 
-    justify-content: center;
-    align-items: center; /* Center horizontally */
-    text-align: center;
-    bottom: 1%;
-    position: absolute;
-    left: 1%;
-    
-}
-
-.notes {
-    width: 31%;
-    height: 60%;
-    background:   wheat;
-    border-radius: 10px;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.2); 
-    margin-top: 10px;
-    justify-content: center;
-    align-items: center; /* Center horizontally */
-    text-align: center;
-    position: absolute;
-    right: 52%;
-    bottom: 28%;
-    overflow-y: auto;
-    scrollbar-color: #b88566 ;
-
-}
-.notes::-webkit-scrollbar {
-    width: 15px; /* Adjust the width as needed */
-    height: 40%;
-
-}
-
-/* Customize the scrollbar track */
-.notes::-webkit-scrollbar-track {
-    background-color: transparent; /* Match the container background */
-    border-radius: 15px; /* Match the container border-radius */
-    height: 50%;
-
-}
-
-/* Customize the scrollbar thumb */
-.notes::-webkit-scrollbar-thumb {
-    background-color: #b88566; /* Set the color of the scrollbar thumb */
-    border-radius: 90px; /* Match the container border-radius */
-    height: 40%;
-
-    
-}
-
-
-.notes button{
-    display: flex;
-    align-items: center;
-    font-size: 130%;
-    font-weight: 600;
-    margin-left: 3%;
-    margin-top: 3%;
-    color:wheat;
-    background: #b88566;
-    border-radius: 25px;
-    border-color: wheat;
-    cursor: pointer;
-}
-.input-box{
-    position: relative;
-    width: 100%;
-    max-width: 90%;
-    min-height: 5vw;
-    background: #b88566;
-    color: wheat;
-    font-size: 1vw;
-    font-weight: bold;
-    padding: 1vw;
-    outline: none;
-    border-radius: 10px;
-    margin-left: 2%;
-    margin-top: 3%;
-    text-align: left;
-}
-.input-box img{
-    width: 1vw;
-    position: absolute;
-    bottom: 1vw;
-    right: 1vw;
-    cursor: pointer;
-}
-.notes h1{
-    color: #b88566;
-    font-size: 2vw;
-
-
-}
-@media screen and (max-width: 760px) {
-    .input-box {
-        font-size: 2vw; /* Adjust font size for smaller screens */
-        padding: 3vw; /* Adjust padding for smaller screens */
-        margin-left: 2%; /* Adjust margin-left for smaller screens */
-        margin-top: 3%;
-    }
-
-    .input-box img {
-        width: 6%; /* Adjust image width for smaller screens */
-        bottom: 12px; /* Adjust bottom position for smaller screens */
-        right: 12px; /* Adjust right position for smaller screens */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .input-box {
-        font-size: 3vw; /* Further adjust font size for even smaller screens */
-        padding: 4vw; /* Further adjust padding for even smaller screens */
-        margin-left: 2%; /* Further adjust margin-left for even smaller screens */
-        margin-top: 3%;
-    }
-
-    .input-box img {
-        width: 8%; /* Further adjust image width for even smaller screens */
-        bottom: 15px; /* Further adjust bottom position for even smaller screens */
-        right: 15px; /* Further adjust right position for even smaller screens */
-    }
-}
+</head>
+<body>
+    <div class="container">
+        <h1>Weekly & Daily Task Manager</h1>
 
 
 
-.chat {
-    width: 18%;
-    height: 60%;
-    background:   wheat;
-    border-radius: 10px;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.2); 
-    margin-top: 10px;
-    justify-content: center;
-    align-items: center; /* Center horizontally */
-    text-align: center;
-    position: absolute;
-    bottom: 28%;
-    right: 1%;
-    overflow-y: auto;
-}
+<!----calander start------>
+<div class="calander">
+    <div class="day">
+    <p id="date">01</p>
+    <p id="day">Sunday</p></div>
+    <div class="date">
+    <p id="month">January</p>
+    <p id="year">2024</p></div>
+ </div>
+<!----calander end------>
 
+<!----task start------>
+<div class="tasks">
+    <h1>tasks</h1>
+    <div class="row">
+        <input type="text" id="input-box" placeholder="Add your task">
+        <button onclick="addTask()">Add</button>
+    </div>
+    <ul id="list-container">
+        <!-- <li class="checked">task 1</li>
+        <li>task 2</li>
+        <li>task 3</li> -->
+    </ul>
+</div>
 
-.tasks {
-    width: 31%;
-    height: 60%;
-    background:   wheat;
-    border-radius: 10px;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.2); 
-    margin-top: 10px;
-    justify-content: center;
-    align-items: center; /* Center horizontally */
-    text-align: left;
-    position: absolute;
-    right: 20%;
-    bottom: 28%;
-    overflow-y: auto;
-    scrollbar-color: #b88566 ;
-
-}
-.tasks::-webkit-scrollbar {
-    width: 15px; /* Adjust the width as needed */
-    height: 40%;
-
-}
-
-/* Customize the scrollbar track */
-.tasks::-webkit-scrollbar-track {
-    background-color: transparent; /* Match the container background */
-    border-radius: 15px; /* Match the container border-radius */
-    height: 50%;
-
-}
-
-/* Customize the scrollbar thumb */
-.tasks::-webkit-scrollbar-thumb {
-    background-color: #b88566; /* Set the color of the scrollbar thumb */
-    border-radius: 90px; /* Match the container border-radius */
-    height: 40%;
-
-}
-
-.tasks h1 {
-    color: #b88566;
-    font-size: 2vw;
-}
-
-.row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #b88566;
-    border-radius: 25px;
-    margin: 2%;
-}
-
-.tasks ::placeholder {
-    color: wheat;
-}
-
-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    padding: 10px;
-    font-weight: 24px;
-    color: wheat;
-    font-size: 1vw;
-    font-weight: bold;
-    margin: 0.5%;
-}
-
-button {
-    border: none;
-    outline: none;
-    background-color: #b88566;
-    color: wheat;
-    cursor: pointer;
-    font-size: 1vw;
-    font-weight: bold;
-    margin-right: 1%;
-}
-
-ul li {
-    list-style: none;
-    font-size: 17px;
-    padding: 12px 12px 12px 50px; /* Adjusted padding */
-    font-weight: bold;
-    user-select: none;
-    cursor: pointer;
-    position: relative;
-}
-
-ul li::before {
-    content: '';
-    position: absolute;
-    height: 28px;
-    width: 28px;
-    border-radius: 50%;
-    background-image: url(images/unchecked.png);
-    background-size: cover;
-    background-position: center;
-    top: 50%; /* Adjusted position */
-    transform: translateY(-50%); /* Center vertically */
-    left: 8px;
-}
-
-ul li.checked {
-    color: black;
-    text-decoration: line-through;
-    text-decoration-thickness: 2px;
-}
-
-ul li.checked::before {
-    background-image: url(images/checked.png);
-}
-
-ul li span{
-    position: absolute;
-    right: 0;
-    top: 5px;
-    width: 40px;
-    height: 40px;
-    font-size: 22px;
-    color: rgb(0, 0, 0);
-
-    line-height: 40px;
-    text-align: center;
-    border-radius: 50%;
-
-}
-ul li span:hover{
-    background: #b88566;
-    border-radius: 50%;
-}
+<!----task end------>
 
 
 
+<!----notes start------>
+<div class="notes">
+    <h1>notes</h1>
+    <button class="btn">create notes</button>
+    <div class="notes-container">
+        <p contenteditable="true" class="input-box">
+        <img src="images/delete.png">
+        </p>
+
+    </div>
+</div>
+<!----notes end------>
 
 
-
-
-#chat-container {
-    width: 18%;
-    height: 60%;
-    background:   wheat;
-    border-radius: 10px;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.2); 
-    margin-top: 10px;
-    justify-content: center;
-    align-items: center; 
-    text-align: center;
-    position: absolute;
-    bottom: 28%;
-    right: 1%;
-    overflow-y: auto;
-  }
-  #chat-history {
-    height: 300px;
-  }
-  .user-message {
-    text-align: right;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    margin-bottom: 5px;
-  }
+<!----chat start------>
+<div id="chat-container">
+    <div id="chat-history"></div>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Enter your message">
+      <button type="submit" id="chat">Send</button>
+    </form>
+  </div>
+  <div id="loader">
+    <img src="loader.gif" width="150px" alt="Loading...">
+  </div>
   
-  .bot-message {
-    text-align: left;
-    padding: 10px;
-    background-color: #e0f0e0;
-    border-radius: 10px;
-    margin-bottom: 5px;
-  }
-  form {
-    display: flex;
-  }
-  
-  input {
-    background: #b88566;
-    border-radius: 25px;
-    margin: 2%;
-    font-weight: 24px;
-  }  
-  #user-input{
-    margin-top: 170px;
-  }
-::placeholder {
-    color: wheat;
+<!----chat end------>
+
+
+
+
+
+<!----clock start------>
+<div class="clock">
+    <span id="hrs">00</span>
+    <span>:</span>
+    <span id="min">00</span>
+
+</div>
+<!----clock end------>
+
+
+<!----weather start------>
+<div class="card">
+    <div class="weather">
+        <img src="images/clear.png" class="weather-icon">
+        <h1 class="temp"></h1>
+        <h2 class="city">Tel Aviv</h2>
+    </div>
+</div>
+<!----weather end------>
+
+
+<!----week start------>
+<div class="week">
+        
+</div>
+<!----week end------>
+
+
+
+<script>
+//task
+const inputBox = document.getElementById("input-box");
+const listCcontainer = document.getElementById("list-container");
+
+function addTask(){
+    if(inputBox.value === ''){
+        alert("please write something!");
+    }
+    else{
+        let li = document.createElement("li");
+        li.innerHTML = inputBox.value;
+        listCcontainer.appendChild(li);
+        let span = document.createElement("span");
+        span.innerHTML = "\u00d7";
+        li.appendChild(span);
+
+    }
+    inputBox.value = "";
+    saveData()
 }
-#chat{
-    display: flex;
-    align-items: center;
-    font-size: 130%;
-    font-weight: 600;
-    margin-left: 3%;
-    margin-top: 3%;
-    color:wheat;
-    background: #b88566;
-    border-radius: 35px;
-    border-color: wheat;
-    cursor: pointer;
-    margin-top: 170px;
+
+listCcontainer.addEventListener("click", function(e){
+    if(e.target.tagName === 'LI'){
+        e.target.classList.toggle("checked");
+        saveData()
+    }
+
+else if(e.target.tagName === "SPAN"){
+    e.target.parentElement.remove();
+    saveData()
 }
-  #loader {
-    display: none;
-    margin-top: 10px;
-    justify-content: center;
-    align-items: center; 
-    text-align: center;
-    position: absolute;
-    bottom: 50%;
-    right: 5%;
-    overflow-y: auto;
-  }
+},false);
+
+function saveData(){
+    localStorage.setItem("data", listCcontainer.innerHTML);
+}
+
+function showTask(){
+    listCcontainer.innerHTML = localStorage.getItem("data");
+}
+showTask();
+
+
+
+// Note Management Section:
+
+const note_notesContainer = document.querySelector(".notes-container");
+const note_createBtn = document.querySelector(".btn");
+let note_notes = document.querySelectorAll(".input-box");
+
+function note_showNotes(){
+    note_notesContainer.innerHTML = localStorage.getItem("note_notes");
+}
+note_showNotes();
+
+function note_updateStorage(){
+    localStorage.setItem("note_notes", note_notesContainer.innerHTML);
+}
+
+note_createBtn.addEventListener("click", ()=>{
+    let inputBox = document.createElement("p");
+    let img = document.createElement("img");
+    inputBox.className = "input-box";
+    inputBox.setAttribute("contenteditable", "true");
+    img.src = "images/delete.png";
+    note_notesContainer.appendChild(inputBox).appendChild(img);
+});
+
+note_notesContainer.addEventListener("click", function(e){
+    if(e.target.tagName === 'IMG'){
+        e.target.parentElement.remove();
+        note_updateStorage();
+    }
+    else if(e.target.tagName === "P"){
+        note_notes = document.querySelectorAll(".input-box");
+        note_notes.forEach(nt => {
+            nt.onkeyup = function(){
+                note_updateStorage();
+            };
+        });
+    }
+});
+
+
+
+
+
+//the calander
+const date = document.getElementById("date");
+const day = document.getElementById("day");
+const month = document.getElementById("month");
+const year = document.getElementById("year");
+const today = new Date();
+
+const weekDays=["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const Months=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+date.innerHTML =(today.getDate()<10?"0" : "") + today.getDate();
+day.innerHTML = weekDays[today.getDay()];
+month.innerHTML = Months[today.getMonth()];
+year.innerHTML = today.getFullYear();
+
+//the clock
+let hrs = document.getElementById("hrs")
+let min = document.getElementById("min")
+
+
+setInterval(()=>{
+let currentTime = new Date();
+
+    hrs.innerHTML = (currentTime.getHours()<10?"0":"") + currentTime.getHours();
+    min.innerHTML = (currentTime.getMinutes()<10?"0":"") + currentTime.getMinutes();
+
+})
+
+//the weat her
+const apiKey = "05b4bdc8d4efd78d3229c30a8909c71a";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+const weatherIcon = document.querySelector(".weather-icon");
+
+async function checkWeather(city) {
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+    const data = await response.json();
+
+document.querySelector(".city").innerHTML = data.name;
+document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
+
+    switch (data.weather[0].main) {
+        case "Clouds":
+            weatherIcon.src = "images/clouds.png";
+            break;
+        case "Clear":
+            weatherIcon.src = "images/clear.png";
+            break;
+        case "Rain":
+            weatherIcon.src = "images/rain.png";
+            break;
+        case "Drizzle":
+            weatherIcon.src = "images/drizzle.png";
+            break;
+        case "Mist":
+            weatherIcon.src = "images/mist.png";
+            break;
+        case "Snow":
+            weatherIcon.src = "images/snow.png";
+            break;
+        default:
+            weatherIcon.src = "images/clear.png"; // Default to clear image
+    }
+}
+// Call checkWeather with the desired city, e.g., "New York"
+checkWeather("Tel Aviv");
+
+
+
+const chatHistory = document.getElementById('chat-history');
+    const userInput = document.getElementById('user-input');
+    const form = document.getElementById('chat-form');
+
+    async function sendMessage() {
+      const userMessage = userInput.value;
+      userInput.value = ''; // Clear input field
+      console.log(userMessage)
+      try {
+        const response = await fetch('/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userInput: userMessage }),
+        });
+
+        const data = await response.json();
+        console.log(data)
+        const botMessage = data.response;
+        console.log(botMessage)
+        // Add chat message to the chat history
+        chatHistory.innerHTML += `<div class="user-message">${userMessage}</div>`;
+        chatHistory.innerHTML += `<div class="bot-message">${botMessage}</div>`;
+
+        // Scroll to the bottom of the chat history
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+      } catch (error) {
+        console.error('Error:', error);
+        // Handle errors gracefully, e.g., display an error message to the user
+      }
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent form submission
+      const loader = document.getElementById('loader');
+      loader.style.display = 'block'; // Show the loader
+      sendMessage().finally(() => {
+      loader.style.display = 'none'; // Hide the loader after the message is sent
+
+      
+    });;
+    });
+</script>
+   
+
+
+</body>
+</html>
