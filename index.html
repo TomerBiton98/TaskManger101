@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Weekly & Daily Task Manager</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Weekly & Daily Task Manager</h1>
+
+
+
+<!----calander start------>
+<div class="calander">
+    <div class="day">
+    <p id="date">01</p>
+    <p id="day">Sunday</p></div>
+    <div class="date">
+    <p id="month">January</p>
+    <p id="year">2024</p></div>
+ </div>
+<!----calander end------>
+
+<!----task start------>
+<div class="tasks">
+    <h1>tasks</h1>
+    <div class="row">
+        <input type="text" id="input-box" placeholder="Add your task">
+        <button onclick="addTask()">Add</button>
+    </div>
+    <ul id="list-container">
+        <!-- <li class="checked">task 1</li>
+        <li>task 2</li>
+        <li>task 3</li> -->
+    </ul>
+</div>
+
+<!----task end------>
+
+
+
+<!----notes start------>
+<div class="notes">
+    <h1>notes</h1>
+    <button class="btn">create notes</button>
+    <div class="notes-container">
+        <p contenteditable="true" class="input-box">
+        <img src="images/delete.png">
+        </p>
+
+    </div>
+</div>
+<!----notes end------>
+
+
+<!----chat start------>
+<div id="chat-container">
+    <div id="chat-history"></div>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Enter your message">
+      <button type="submit" id="chat">Send</button>
+    </form>
+  </div>
+  <div id="loader">
+    <img src="loader.gif" width="150px" alt="Loading...">
+  </div>
+<!----chat end------>
+
+
+
+
+
+<!----clock start------>
+<div class="clock">
+    <span id="hrs">00</span>
+    <span>:</span>
+    <span id="min">00</span>
+
+</div>
+<!----clock end------>
+
+
+<!----weather start------>
+<div class="card">
+    <div class="weather">
+        <img src="images/clear.png" class="weather-icon">
+        <h1 class="temp"></h1>
+        <h2 class="city">Tel Aviv</h2>
+    </div>
+</div>
+<!----weather end------>
+
+
+<!----week start------>
+<div class="week">
+        
+</div>
+<!----week end------>
+
+
+
+<script>
+//task
+const inputBox = document.getElementById("input-box");
+const listCcontainer = document.getElementById("list-container");
+
+function addTask(){
+    if(inputBox.value === ''){
+        alert("please write something!");
+    }
+    else{
+        let li = document.createElement("li");
+        li.innerHTML = inputBox.value;
+        listCcontainer.appendChild(li);
+        let span = document.createElement("span");
+        span.innerHTML = "\u00d7";
+        li.appendChild(span);
+
+    }
+    inputBox.value = "";
+    saveData()
+}
+
+listCcontainer.addEventListener("click", function(e){
+    if(e.target.tagName === 'LI'){
+        e.target.classList.toggle("checked");
+        saveData()
+    }
+
+else if(e.target.tagName === "SPAN"){
+    e.target.parentElement.remove();
+    saveData()
+}
+},false);
+
+function saveData(){
+    localStorage.setItem("data", listCcontainer.innerHTML);
+}
+
+function showTask(){
+    listCcontainer.innerHTML = localStorage.getItem("data");
+}
+showTask();
+
+
+
+// Note Management Section:
+
+const note_notesContainer = document.querySelector(".notes-container");
+const note_createBtn = document.querySelector(".btn");
+let note_notes = document.querySelectorAll(".input-box");
+
+function note_showNotes(){
+    note_notesContainer.innerHTML = localStorage.getItem("note_notes");
+}
+note_showNotes();
+
+function note_updateStorage(){
+    localStorage.setItem("note_notes", note_notesContainer.innerHTML);
+}
+
+note_createBtn.addEventListener("click", ()=>{
+    let inputBox = document.createElement("p");
+    let img = document.createElement("img");
+    inputBox.className = "input-box";
+    inputBox.setAttribute("contenteditable", "true");
+    img.src = "images/delete.png";
+    note_notesContainer.appendChild(inputBox).appendChild(img);
+});
+
+note_notesContainer.addEventListener("click", function(e){
+    if(e.target.tagName === 'IMG'){
+        e.target.parentElement.remove();
+        note_updateStorage();
+    }
+    else if(e.target.tagName === "P"){
+        note_notes = document.querySelectorAll(".input-box");
+        note_notes.forEach(nt => {
+            nt.onkeyup = function(){
+                note_updateStorage();
+            };
+        });
+    }
+});
+
+
+
+
+
+//the calander
+const date = document.getElementById("date");
+const day = document.getElementById("day");
+const month = document.getElementById("month");
+const year = document.getElementById("year");
+const today = new Date();
+
+const weekDays=["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const Months=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+date.innerHTML =(today.getDate()<10?"0" : "") + today.getDate();
+day.innerHTML = weekDays[today.getDay()];
+month.innerHTML = Months[today.getMonth()];
+year.innerHTML = today.getFullYear();
+
+//the clock
+let hrs = document.getElementById("hrs")
+let min = document.getElementById("min")
+
+
+setInterval(()=>{
+let currentTime = new Date();
+
+    hrs.innerHTML = (currentTime.getHours()<10?"0":"") + currentTime.getHours();
+    min.innerHTML = (currentTime.getMinutes()<10?"0":"") + currentTime.getMinutes();
+
+})
+
+//the weat her
+const apiKey = "05b4bdc8d4efd78d3229c30a8909c71a";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+const weatherIcon = document.querySelector(".weather-icon");
+
+async function checkWeather(city) {
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+    const data = await response.json();
+
+document.querySelector(".city").innerHTML = data.name;
+document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
+
+    switch (data.weather[0].main) {
+        case "Clouds":
+            weatherIcon.src = "images/clouds.png";
+            break;
+        case "Clear":
+            weatherIcon.src = "images/clear.png";
+            break;
+        case "Rain":
+            weatherIcon.src = "images/rain.png";
+            break;
+        case "Drizzle":
+            weatherIcon.src = "images/drizzle.png";
+            break;
+        case "Mist":
+            weatherIcon.src = "images/mist.png";
+            break;
+        case "Snow":
+            weatherIcon.src = "images/snow.png";
+            break;
+        default:
+            weatherIcon.src = "images/clear.png"; // Default to clear image
+    }
+}
+// Call checkWeather with the desired city, e.g., "New York"
+checkWeather("Tel Aviv");
+
+
+
+const chatHistory = document.getElementById('chat-history');
+    const userInput = document.getElementById('user-input');
+    const form = document.getElementById('chat-form');
+
+    async function sendMessage() {
+      const userMessage = userInput.value;
+      userInput.value = ''; // Clear input field
+      console.log(userMessage)
+      try {
+        const response = await fetch('/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userInput: userMessage }),
+        });
+
+        const data = await response.json();
+        console.log(data)
+        const botMessage = data.response;
+        console.log(botMessage)
+        // Add chat message to the chat history
+        chatHistory.innerHTML += `<div class="user-message">${userMessage}</div>`;
+        chatHistory.innerHTML += `<div class="bot-message">${botMessage}</div>`;
+
+        // Scroll to the bottom of the chat history
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+      } catch (error) {
+        console.error('Error:', error);
+        // Handle errors gracefully, e.g., display an error message to the user
+      }
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent form submission
+      const loader = document.getElementById('loader');
+      loader.style.display = 'block'; // Show the loader
+      sendMessage().finally(() => {
+      loader.style.display = 'none'; // Hide the loader after the message is sent
+    });;
+    });
+</script>
+   
+
+
+</body>
+</html>
